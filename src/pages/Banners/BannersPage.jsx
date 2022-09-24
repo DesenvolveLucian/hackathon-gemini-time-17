@@ -57,11 +57,11 @@ function BannersPage() {
         </div>
 
         <Typography variant="body1" align="center" className="subtitle">
-          {selectedBanner.subtitulo}
+          {selectedBanner.subtitle}
         </Typography>
 
         <Typography variant="body2" align="center" className="descricao">
-          {selectedBanner.descriçao}
+          {selectedBanner.descricao}
         </Typography>
 
         <div className="actions">

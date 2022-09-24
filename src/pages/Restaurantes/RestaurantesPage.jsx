@@ -1,9 +1,12 @@
 import { Container, Typography, CircularProgress } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { getRestaurantes } from "../../services/restaurantes.service";
+import { useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 
 function RestaurantesPage() {
+  let {categoriaId} = useParams();
+  const navigate = useNavigate();
   const [nomeCategoria, setNomeCategoria] = useState([]);
   const [restaurantesBaratinho, setRestaurantesBaratinho] = useState();
   const [restaurantesNoPreco, setRestaurantesNoPreco] = useState([]);
@@ -11,7 +14,8 @@ function RestaurantesPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getRestaurantes().then((response) => {
+    debugger
+    getRestaurantes({categoriaId}).then((response) => {
       setNomeCategoria(response.categoria)
       setRestaurantesBaratinho(response.baratinho);
       setRestaurantesNoPreco(response.no_preco);
@@ -38,6 +42,7 @@ function RestaurantesPage() {
       {restaurantesBaratinho?.map(restaurante => (
         <div key={restaurante.id}>
           {restaurante.nome}
+            onClick={() => navigate(`/restaurante/${restaurante.id}`)}
         </div>
       ))}
     </Container>
